@@ -27,7 +27,6 @@ public class HomeController {
 	
 	@PostMapping("/signup.do")
     public void signUp(@RequestBody UserBean user) {
-		user.setUsername(user.getUsername());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
     }
 	
