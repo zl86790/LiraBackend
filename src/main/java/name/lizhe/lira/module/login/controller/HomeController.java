@@ -28,13 +28,15 @@ public class HomeController {
     }
 
     @PostMapping("/login")
-    public void login(HttpServletResponse response,
+    public @ResponseBody String login(HttpServletResponse response,
                       @RequestBody final UserBean userBean) throws IOException {
         if(validCredentials(userBean)) {
             String jwt = JwtUtil.generateToken(userBean.getUsername());
-            response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwt);
+//            response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwt);
+            return TOKEN_PREFIX + " " + jwt;
         }else
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Wrong credentials");
+		return null;
     }
 
     private boolean validCredentials(UserBean userBean) {
