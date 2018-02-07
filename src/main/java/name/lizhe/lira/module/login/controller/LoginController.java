@@ -4,6 +4,7 @@ import static name.lizhe.lira.app.tool.JwtUtil.TOKEN_PREFIX;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +20,8 @@ import name.lizhe.lira.module.user.bean.UserBean;
 public class LoginController {
 	
     @GetMapping("/api/postlogin/hello")
-    public @ResponseBody Object hellWorld() {
-        return "Hello World! This is a protected api";
+    public @ResponseBody Object hellWorld(HttpServletRequest request) {
+        return "Hello World! This is a protected api "+request.getAttribute("username");
     }
 
     @PostMapping("/api/prelogin/login")

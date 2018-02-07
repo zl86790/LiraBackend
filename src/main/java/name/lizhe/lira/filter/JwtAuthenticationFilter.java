@@ -28,7 +28,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             if(pathMatcher.match(protectUrlPattern, request.getServletPath())) {
                 String token = request.getHeader(HEADER_STRING);
-                JwtUtil.validateToken(token);
+                String username = JwtUtil.validateToken(token);
+                request.setAttribute("username", username);
             }
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
