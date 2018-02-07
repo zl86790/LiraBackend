@@ -34,7 +34,7 @@ public class Application {
     public FilterRegistrationBean jwtFilter() {
         final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         JwtAuthenticationFilter filter = new JwtAuthenticationFilter(
-                "/api/**");
+                "/api/postlogin/**");
         registrationBean.setFilter(filter);
         return registrationBean;
     }

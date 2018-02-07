@@ -10,12 +10,11 @@ import java.util.Map;
 public class JwtUtil {
     public static final long EXPIRATION_TIME = 3600_000_000L; // 1000 hour
     public static final String SECRET = "ThisIsASecret";
-    public static final String TOKEN_PREFIX = "Bearer";
+    public static final String TOKEN_PREFIX = "LiraBearer";
     public static final String HEADER_STRING = "Authorization";
 
     public static String generateToken(String username) {
         HashMap<String, Object> map = new HashMap<>();
-        //you can put any data in the map
         map.put("username", username);
         String jwt = Jwts.builder()
                 .setClaims(map)
