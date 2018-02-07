@@ -1,2 +1,1 @@
 https://github.com/qihaiyan/jwt-boot-auth.git
-http://blog.csdn.net/haiyan_qi/article/details/77373900
