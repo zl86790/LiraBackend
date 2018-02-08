@@ -8,12 +8,12 @@ import name.lizhe.lira.module.login.service.LoginService;
 import name.lizhe.lira.module.user.bean.UserBean;
 
 @Service
-public class LoginServiceImpl implements LoginService {
+public class LoginServiceImpl implements LoginService{
 	
 	@Autowired
     private LoginMapper loginMapper;
 	
-	@Override
+
 	public UserBean doLogin(String username, String password) {
 		return loginMapper.doLogin(username, password);
 	}

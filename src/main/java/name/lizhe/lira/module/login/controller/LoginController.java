@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import name.lizhe.lira.app.tool.JwtUtil;
 import name.lizhe.lira.module.login.service.LoginService;
+import name.lizhe.lira.module.login.service.impl.LoginServiceImpl;
 import name.lizhe.lira.module.user.bean.UserBean;
 
 @RestController

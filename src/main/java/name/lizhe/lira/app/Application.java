@@ -16,7 +16,7 @@ import name.lizhe.lira.filter.JwtAuthenticationFilter;
 
 @SpringBootApplication
 @ComponentScan(basePackages={"name.lizhe.*.*"}) 
-@MapperScan(basePackages={"name.lizhe.*.*"})
+@MapperScan(basePackages={"name.lizhe.lira.module.*.dao.mapper"})
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
