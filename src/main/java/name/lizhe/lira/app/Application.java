@@ -1,5 +1,6 @@
 package name.lizhe.lira.app;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -15,6 +16,7 @@ import name.lizhe.lira.filter.JwtAuthenticationFilter;
 
 @SpringBootApplication
 @ComponentScan(basePackages={"name.lizhe.*.*"}) 
+@MapperScan(basePackages={"name.lizhe.*.*"})
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
