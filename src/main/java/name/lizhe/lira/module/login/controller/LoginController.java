@@ -3,6 +3,8 @@ package name.lizhe.lira.module.login.controller;
 import static name.lizhe.lira.app.tool.JwtUtil.TOKEN_PREFIX;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,11 +33,14 @@ public class LoginController {
     }
 
     @PostMapping("/api/prelogin/login")
-    public @ResponseBody String login(HttpServletResponse response,
+    public @ResponseBody Map login(HttpServletResponse response,
                       @RequestBody final UserBean userBean) throws IOException {
         if(validCredentials(userBean)) {
             String jwt = JwtUtil.generateToken(userBean.getUserName());
-            return TOKEN_PREFIX + " " + jwt;
+//          response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwt);
+            Map<String,String> result = new HashMap<>();
+            result.put("token", TOKEN_PREFIX + " " + jwt);
+            return result;
         }else
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Wrong credentials");
 		return null;
