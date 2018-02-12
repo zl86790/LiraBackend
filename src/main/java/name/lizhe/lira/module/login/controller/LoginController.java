@@ -27,12 +27,12 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 	
-    @GetMapping("/api/postlogin/hello")
+    @GetMapping("/api/v1/postlogin/hello")
     public @ResponseBody Object hellWorld(HttpServletRequest request) {
         return "Hello World! This is a protected api "+request.getAttribute("username");
     }
 
-    @PostMapping("/api/prelogin/login")
+    @PostMapping("/api/v1/prelogin/login")
     public @ResponseBody Map login(HttpServletResponse response,
                       @RequestBody final UserBean userBean) throws IOException {
         if(validCredentials(userBean)) {
