@@ -11,8 +11,7 @@ import name.lizhe.lira.module.user.bean.UserBean;
 public class LoginServiceImpl implements LoginService{
 	
 	@Autowired
-    private LoginMapper loginMapper;
-	
+    LoginMapper loginMapper;
 
 	public UserBean doLogin(String username, String password) {
 		return loginMapper.doLogin(username, password);

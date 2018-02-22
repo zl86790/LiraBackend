@@ -1,7 +1,5 @@
 package name.lizhe.lira.module.login.controller;
 
-import static name.lizhe.lira.app.tool.JwtUtil.TOKEN_PREFIX;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import name.lizhe.lira.app.tool.JwtUtil;
 import name.lizhe.lira.module.login.service.LoginService;
-import name.lizhe.lira.module.login.service.impl.LoginServiceImpl;
 import name.lizhe.lira.module.user.bean.UserBean;
 
 @RestController
@@ -39,7 +36,7 @@ public class LoginController {
             String jwt = JwtUtil.generateToken(userBean.getUserName());
 //          response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwt);
             Map<String,String> result = new HashMap<>();
-            result.put("token", TOKEN_PREFIX + " " + jwt);
+            result.put("lira_token", jwt);
             return result;
         }else
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Wrong credentials");

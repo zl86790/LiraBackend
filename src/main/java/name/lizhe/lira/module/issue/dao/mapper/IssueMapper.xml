@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="name.lizhe.lira.module.issue.dao.mapper.IssueMapper" >
+
+	<select id="createIssue" parameterType="name.lizhe.lira.module.issue.bean.IssueBean">
+	<![CDATA[
+		insert into Issues 
+			(
+				name, 
+				type, 
+				priority, 
+				labels, 
+				status, 
+				description, 
+				assignee, 
+				reporter, 
+				created_time, 
+				updated_time, 
+				resolved_time, 
+				estimated, 
+				remaining, 
+				logged
+			)
+		values
+			(
+				#{name,jdbcType=VARCHAR},
+				#{type,jdbcType=VARCHAR},
+				#{priority,jdbcType=VARCHAR},
+				#{labels,jdbcType=VARCHAR},
+				#{status,jdbcType=VARCHAR},
+				#{description,jdbcType=VARCHAR},
+				#{assignee,jdbcType=INTEGER},
+				#{reporter,jdbcType=INTEGER},
+				#{created_time,jdbcType=DATE},
+				#{updated_time,jdbcType=DATE},
+				#{resolved_time,jdbcType=DATE},
+				#{estimated,jdbcType=INTEGER},
+				#{remaining,jdbcType=INTEGER},
+				#{logged,jdbcType=INTEGER}
+			)
+
+	]]>
+	</select>
+	
+</mapper>

@@ -27,7 +27,7 @@ public class Application {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*");
+                registry.addMapping("/**").allowedOrigins("*").allowedHeaders("*");
             }
         };
     }
@@ -36,7 +36,7 @@ public class Application {
     public FilterRegistrationBean jwtFilter() {
         final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         JwtAuthenticationFilter filter = new JwtAuthenticationFilter(
-                "/api/postlogin/**");
+                "/api/v1/postlogin/**");
         registrationBean.setFilter(filter);
         return registrationBean;
     }

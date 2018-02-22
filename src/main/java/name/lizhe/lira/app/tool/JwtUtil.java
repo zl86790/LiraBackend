@@ -10,8 +10,7 @@ import java.util.Map;
 public class JwtUtil {
     public static final long EXPIRATION_TIME = 3600_000_000L; // 1000 hour
     public static final String SECRET = "ThisIsASecret";
-    public static final String TOKEN_PREFIX = "LiraBearer";
-    public static final String HEADER_STRING = "Authorization";
+    public static final String HEADER_STRING = "lira_token";
 
     public static String generateToken(String username) {
         HashMap<String, Object> map = new HashMap<>();
@@ -30,7 +29,7 @@ public class JwtUtil {
             // parse the token.
             Map<String,Object> body = Jwts.parser()
                     .setSigningKey(SECRET)
-                    .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+                    .parseClaimsJws(token)
                     .getBody();
             String username = (String) (body.get("username"));
             if(username == null || username.isEmpty())
