@@ -6,6 +6,7 @@ public class IssueBean {
 	
 	private int id;
 	private String name;
+	private String summary;
 	private String type;
 	private String priority;
 	private String labels;
@@ -19,7 +20,6 @@ public class IssueBean {
 	private int estimated;
 	private int remaining;
 	private int logged;
-	
 	public int getId() {
 		return id;
 	}
@@ -31,6 +31,12 @@ public class IssueBean {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getSummary() {
+		return summary;
+	}
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
 	public String getType() {
 		return type;
@@ -110,5 +116,7 @@ public class IssueBean {
 	public void setLogged(int logged) {
 		this.logged = logged;
 	}
+	
+	
 	
 }
