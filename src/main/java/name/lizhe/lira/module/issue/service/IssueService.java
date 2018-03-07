@@ -7,4 +7,5 @@ import name.lizhe.lira.module.issue.bean.IssueBean;
 public interface IssueService {
 	public void createIssue(IssueBean issueBean);
 	public List<IssueBean> getIssues(String name);
+	public IssueBean getIssueById(String id);
 }

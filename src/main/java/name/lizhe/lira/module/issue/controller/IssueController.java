@@ -40,4 +40,11 @@ public class IssueController {
     	return issueService.getIssues(name);
     	
     }
+    
+    @GetMapping("/api/v1/postlogin/issue")
+    public @ResponseBody IssueBean getIssueById(String id) throws IOException {
+    	
+    	return issueService.getIssueById(id);
+    	
+    }
 }

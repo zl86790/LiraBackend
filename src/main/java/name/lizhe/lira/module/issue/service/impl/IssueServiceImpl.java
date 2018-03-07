@@ -25,4 +25,9 @@ public class IssueServiceImpl implements IssueService {
 		return issueMapper.getIssues(name);
 	}
 
+	@Override
+	public IssueBean getIssueById(String id) {
+		return issueMapper.getIssueById(id);
+	}
+
 }

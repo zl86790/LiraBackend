@@ -13,4 +13,6 @@ public interface IssueMapper {
 
 	public List<IssueBean> getIssues(String name);
 	
+	public IssueBean getIssueById(String id);
+	
 }

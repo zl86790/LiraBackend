@@ -72,6 +72,15 @@
 	]]>
 	</select>
 	
+	<select id="getIssueById" parameterType="java.lang.String" resultMap="IssueBeanMap">
+	<![CDATA[
+		select
+			id,name,summary,type,priority,labels,status,description,assignee,reporter,created_time,updated_time,resolved_time,estimated,remaining,logged
+		from Issues 
+			where id=#{id}
+	]]>
+	</select>
+	
 	
 	
 </mapper>
