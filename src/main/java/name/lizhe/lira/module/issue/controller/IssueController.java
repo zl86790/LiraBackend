@@ -43,8 +43,8 @@ public class IssueController {
     
     @GetMapping("/api/v1/postlogin/issue")
     public @ResponseBody IssueBean getIssueById(String id) throws IOException {
-    	
-    	return issueService.getIssueById(id);
+    	IssueBean bean = issueService.getIssueById(id);
+    	return bean;
     	
     }
 }

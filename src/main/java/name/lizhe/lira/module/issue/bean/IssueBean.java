@@ -20,6 +20,11 @@ public class IssueBean {
 	private int estimated;
 	private int remaining;
 	private int logged;
+	
+	private Date created_time_formatted;
+	private Date updated_time_formatted;
+	private Date resolved_time_formatted;
+	
 	public int getId() {
 		return id;
 	}
@@ -116,7 +121,23 @@ public class IssueBean {
 	public void setLogged(int logged) {
 		this.logged = logged;
 	}
-	
-	
+	public Date getCreated_time_formatted() {
+		return created_time_formatted;
+	}
+	public void setCreated_time_formatted(Date created_time_formatted) {
+		this.created_time_formatted = created_time_formatted;
+	}
+	public Date getUpdated_time_formatted() {
+		return updated_time_formatted;
+	}
+	public void setUpdated_time_formatted(Date updated_time_formatted) {
+		this.updated_time_formatted = updated_time_formatted;
+	}
+	public Date getResolved_time_formatted() {
+		return resolved_time_formatted;
+	}
+	public void setResolved_time_formatted(Date resolved_time_formatted) {
+		this.resolved_time_formatted = resolved_time_formatted;
+	}
 	
 }
