@@ -1,10 +1,12 @@
 package name.lizhe.lira.module.issue.bean;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class IssueBean {
 	
 	private int id;
+	private String issue_key;
 	private String name;
 	private String summary;
 	private String type;
@@ -21,15 +23,23 @@ public class IssueBean {
 	private int remaining;
 	private int logged;
 	
-	private Date created_time_formatted;
-	private Date updated_time_formatted;
-	private Date resolved_time_formatted;
+	private String created_time_formatted;
+	private String updated_time_formatted;
+	private String resolved_time_formatted;
+	
+	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
 	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getIssue_key() {
+		return issue_key;
+	}
+	public void setIssue_key(String issue_key) {
+		this.issue_key = issue_key;
 	}
 	public String getName() {
 		return name;
@@ -121,23 +131,24 @@ public class IssueBean {
 	public void setLogged(int logged) {
 		this.logged = logged;
 	}
-	public Date getCreated_time_formatted() {
-		return created_time_formatted;
+	public String getCreated_time_formatted() {
+		return simpleDateFormat.format(created_time);
 	}
-	public void setCreated_time_formatted(Date created_time_formatted) {
+	public void setCreated_time_formatted(String created_time_formatted) {
 		this.created_time_formatted = created_time_formatted;
 	}
-	public Date getUpdated_time_formatted() {
-		return updated_time_formatted;
+	public String getUpdated_time_formatted() {
+		return simpleDateFormat.format(updated_time);
 	}
-	public void setUpdated_time_formatted(Date updated_time_formatted) {
+	public void setUpdated_time_formatted(String updated_time_formatted) {
 		this.updated_time_formatted = updated_time_formatted;
 	}
-	public Date getResolved_time_formatted() {
-		return resolved_time_formatted;
+	public String getResolved_time_formatted() {
+		return simpleDateFormat.format(resolved_time);
 	}
-	public void setResolved_time_formatted(Date resolved_time_formatted) {
+	public void setResolved_time_formatted(String resolved_time_formatted) {
 		this.resolved_time_formatted = resolved_time_formatted;
 	}
+	
 	
 }

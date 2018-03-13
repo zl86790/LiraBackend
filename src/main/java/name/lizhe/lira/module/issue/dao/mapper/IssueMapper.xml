@@ -6,6 +6,7 @@
 	<![CDATA[
 		insert into Issues 
 			(
+				issue_key,
 				name, 
 				summary,
 				type, 
@@ -24,6 +25,7 @@
 			)
 		values
 			(
+				#{issue_key,jdbcType=VARCHAR},
 				#{name,jdbcType=VARCHAR},
 				#{summary,jdbcType=VARCHAR},
 				#{type,jdbcType=VARCHAR},
@@ -46,6 +48,7 @@
 	
 	<resultMap id="IssueBeanMap" type="name.lizhe.lira.module.issue.bean.IssueBean">
 		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="issue_key" property="issue_key" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="summary" property="summary" jdbcType="VARCHAR" />
 		<result column="type" property="type" jdbcType="VARCHAR" />
@@ -67,7 +70,7 @@
 	<select id="getIssues" resultMap="IssueBeanMap">
 	<![CDATA[
 		select
-			id,name,summary,type,priority,labels,status,description,assignee,reporter,created_time,updated_time,resolved_time,estimated,remaining,logged
+			id,issue_key,name,summary,type,priority,labels,status,description,assignee,reporter,created_time,updated_time,resolved_time,estimated,remaining,logged
 		from Issues
 	]]>
 	</select>
@@ -75,7 +78,7 @@
 	<select id="getIssueById" parameterType="java.lang.String" resultMap="IssueBeanMap">
 	<![CDATA[
 		select
-			id,name,summary,type,priority,labels,status,description,assignee,reporter,created_time,updated_time,resolved_time,estimated,remaining,logged
+			id,issue_key,name,summary,type,priority,labels,status,description,assignee,reporter,created_time,updated_time,resolved_time,estimated,remaining,logged
 		from Issues 
 			where id=#{id}
 	]]>
