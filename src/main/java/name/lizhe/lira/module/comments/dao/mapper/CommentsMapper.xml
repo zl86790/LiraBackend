@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="name.lizhe.lira.module.comments.dao.mapper.CommentsMapper" >
+
+	<resultMap id="CommentsBeanMap" type="name.lizhe.lira.module.comments.bean.CommentsBean">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="issue_id" property="issue_id" jdbcType="INTEGER" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getIssueComments " parameterType="java.lang.String" resultMap="CommentsBeanMap">
+	<![CDATA[
+		select id,issue_id,content from Comments where issue_id=#{issue_id}
+	]]>
+	</select>
+	
+	
+	
+</mapper>
