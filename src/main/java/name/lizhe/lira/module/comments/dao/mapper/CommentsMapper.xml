@@ -8,7 +8,7 @@
 		<result column="content" property="content" jdbcType="VARCHAR" />
 	</resultMap>
 
-	<select id="getIssueComments " parameterType="java.lang.String" resultMap="CommentsBeanMap">
+	<select id="getIssueComments"  resultMap="CommentsBeanMap">
 	<![CDATA[
 		select id,issue_id,content from Comments where issue_id=#{issue_id}
 	]]>
