@@ -3,11 +3,13 @@ package name.lizhe.lira.module.history.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import name.lizhe.lira.module.history.bean.IssueHistoryBean;
 import name.lizhe.lira.module.history.dao.mapper.HistoryMapper;
 import name.lizhe.lira.module.history.service.IssueHistoryService;
 
+@Service
 public class IssueHistoryServiceImpl implements IssueHistoryService {
 
 	@Autowired

@@ -14,7 +14,7 @@ import name.lizhe.lira.module.history.bean.IssueHistoryBean;
 import name.lizhe.lira.module.history.service.IssueHistoryService;
 
 @RestController
-public class CommentsController {
+public class HistoryController {
 
 	@Autowired
 	IssueHistoryService issueHistoryService;
