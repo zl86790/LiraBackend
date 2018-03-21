@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="name.lizhe.lira.module.project.dao.mapper.ProjectMapper" >
+
+	<insert id="createProject" parameterType="name.lizhe.lira.module.project.bean.ProjectBean">
+	<![CDATA[
+		insert into Projects 
+			(
+				name,
+				project_key,
+				leader,
+				type,
+				category,
+				url,
+				updated_time
+			)
+		values
+			(
+				#{name,jdbcType=VARCHAR},
+				#{project_key,jdbcType=VARCHAR},
+				#{leader,jdbcType=VARCHAR},
+				#{type,jdbcType=VARCHAR},
+				#{category,jdbcType=VARCHAR},
+				#{url,jdbcType=VARCHAR},
+				#{updated_time,jdbcType=DATE}
+			)
+
+	]]>
+	</insert>
+	
+	
+	
+	
+	
+</mapper>
