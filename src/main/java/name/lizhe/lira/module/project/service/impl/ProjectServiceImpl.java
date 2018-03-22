@@ -1,5 +1,7 @@
 package name.lizhe.lira.module.project.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public void createProject(ProjectBean projectBean) {
 		projectMapper.createProject(projectBean);
+	}
+
+	@Override
+	public List<ProjectBean> getProjects() {
+		return projectMapper.getProjects();
 	}
 
 }
