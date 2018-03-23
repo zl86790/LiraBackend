@@ -9,7 +9,7 @@ spring:
     datasource:
         url: jdbc:mysql://lizhe.name:8088/Lira
         username: root
-        password: woshiliqianyue0308
+        password: 
         driver-class-name: com.mysql.jdbc.Driver
         min-idle: 5
         max-idle: 10
