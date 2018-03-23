@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="name.lizhe.lira.module.project.dao.mapper.ProjectMapper" >
+
+	<insert id="createProject" parameterType="name.lizhe.lira.module.project.bean.ProjectBean">
+	<![CDATA[
+		insert into Projects 
+			(
+				name,
+				project_key,
+				leader,
+				type,
+				category,
+				url,
+				updated_time
+			)
+		values
+			(
+				#{name,jdbcType=VARCHAR},
+				#{project_key,jdbcType=VARCHAR},
+				#{leader,jdbcType=VARCHAR},
+				#{type,jdbcType=VARCHAR},
+				#{category,jdbcType=VARCHAR},
+				#{url,jdbcType=VARCHAR},
+				#{updated_time,jdbcType=DATE}
+			)
+
+	]]>
+	</insert>
+	
+	
+	<resultMap id="ProjectBeanMap" type="name.lizhe.lira.module.project.bean.ProjectBean">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="project_key" property="project_key" jdbcType="VARCHAR" />
+		<result column="leader" property="leader" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="category" property="category" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="updated_time" property="updated_time" jdbcType="DATE" />
+	</resultMap>
+	
+	<select id="getProjects" resultMap="ProjectBeanMap">
+	<![CDATA[
+		select
+			p.id,p.name,p.project_key,u.name as leader,p.type,p.category,p.url,p.updated_time 
+		from Projects p 
+			join Users u on p.leader = u.id
+	]]>
+	</select>
+	
+	
+</mapper>
