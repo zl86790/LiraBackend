@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="name.lizhe.lira.module.watcher.dao.mapper.WatcherMapper" >
+
+	<resultMap id="IssueWatcherBeanMap" type="name.lizhe.lira.module.watcher.bean.IssueWatcherBean">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="issue_id" property="issue_id" jdbcType="INTEGER" />
+		<result column="user_id" property="user_id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="updated_time" property="updated_time" jdbcType="DATE" />
+	</resultMap>
+
+	<select id="getIssueWatchers"  resultMap="IssueWatcherBeanMap">
+	<![CDATA[
+		select u.name
+		 from Watchers as w 
+		 join Users u 
+		 on w.user_id=u.id where w.issue_id=#{issue_id}
+	]]>
+	</select>
+	
+</mapper>
