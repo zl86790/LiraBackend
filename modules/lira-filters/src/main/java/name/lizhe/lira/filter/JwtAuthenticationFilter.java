@@ -1,7 +1,5 @@
 package name.lizhe.lira.filter;
 
-import static name.lizhe.lira.app.tool.JwtUtil.HEADER_STRING;
-
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -28,7 +26,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     	
         try {
             if(pathMatcher.match(protectUrlPattern, request.getServletPath())) {
-                String token = request.getHeader(HEADER_STRING);
+                String token = request.getHeader(JwtUtil.HEADER_STRING);
                 String username = JwtUtil.validateToken(token);
                 request.setAttribute("username", username);
             }

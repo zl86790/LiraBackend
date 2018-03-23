@@ -1,16 +1,39 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>name.lizhe</groupId>
+	<groupId>name.lizhe.lira</groupId>
 	<artifactId>LiraBackend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.10.RELEASE</version>
 	</parent>
+	
+	<properties>
+		<lira.version>0.0.1-SNAPSHOT</lira.version>
+	</properties>
+
+	<modules>
+		<module>modules/lira-tools</module>
+		<module>modules/lira-user</module>
+		<module>modules/lira-filters</module>
+		<module>modules/lira-login</module>
+		<module>modules/lira-issue</module>
+		<module>modules/lira-project</module>
+		<module>modules/lira-issue-watcher</module>
+		<module>modules/lira-issue-comments</module>
+		<module>modules/lira-issue-history</module>
+		<module>lira-app</module>
+	</modules>
+	
 	<dependencies>
+	
+	
+		
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -43,13 +66,27 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	
 	<build>
-		<finalName>Lira</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+			        <mainClass>name.lizhe.lira.app.Application</mainClass>
+			        <layout>MODULE</layout>
+			    </configuration> 
+			    <executions>
+                <execution>
+                    <goals>
+                        <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
+                    </goals>
+                    <!--可以生成不含依赖包的不可执行Jar包-->
+                    <!-- configuration>
+                      <classifier>exec</classifier>
+                    </configuration> -->
+                </execution>
+            </executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
