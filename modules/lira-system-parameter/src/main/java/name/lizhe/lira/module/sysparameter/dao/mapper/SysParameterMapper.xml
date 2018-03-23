@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="name.lizhe.lira.module.sysparameter.dao.mapper.SysparameterMapper" >
+	
+	<resultMap id="SysParameterBeanMap" type="name.lizhe.lira.module.sysparameter.bean.SysParameterBean">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="module_key" property="module_key" jdbcType="VARCHAR" />
+		<result column="value_key" property="value_key" jdbcType="VARCHAR" />
+		<result column="value_content" property="value_content" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getValues" resultMap="SysParameterBeanMap" parameterType="java.util.Map">
+	<![CDATA[
+		select
+			id,module_key,value_key,value_content
+		from SystemParameters p 
+			where module_key=#{module_key} and value_key=#{value_key}
+	]]>
+	</select>
+	
+</mapper>

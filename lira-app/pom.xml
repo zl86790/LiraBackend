@@ -54,5 +54,11 @@
 			<artifactId>lira-user</artifactId>
 			<version>${lira.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>name.lizhe.lira</groupId>
+			<artifactId>lira-system-parameter</artifactId>
+			<version>${lira.version}</version>
+		</dependency>
+		
 	</dependencies>
 </project>
