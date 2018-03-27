@@ -22,7 +22,7 @@
 				#{type,jdbcType=VARCHAR},
 				#{category,jdbcType=VARCHAR},
 				#{url,jdbcType=VARCHAR},
-				#{updated_time,jdbcType=DATE}
+				#{updated_time,jdbcType=TIMESTAMP}
 			)
 
 	]]>

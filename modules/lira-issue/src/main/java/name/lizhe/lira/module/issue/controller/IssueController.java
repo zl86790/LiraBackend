@@ -1,6 +1,7 @@
 package name.lizhe.lira.module.issue.controller;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,9 @@ public class IssueController {
     public @ResponseBody Map<String,String> createIssue(HttpServletResponse response,
                       @RequestBody final IssueBean issueBean) throws IOException {
     	
+    	issueBean.setCreated_time(Calendar.getInstance().getTime());
+    	issueBean.setUpdated_time(Calendar.getInstance().getTime());
+    	issueBean.setResolved_time(null);
     	issueService.createIssue(issueBean);
     	
     	Map<String,String> result = new HashMap<>();

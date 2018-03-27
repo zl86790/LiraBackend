@@ -6,6 +6,7 @@
 	<![CDATA[
 		insert into Issues 
 			(
+				project_id,
 				issue_key,
 				name, 
 				summary,
@@ -25,6 +26,7 @@
 			)
 		values
 			(
+				#{project_id,jdbcType=INTEGER},
 				#{issue_key,jdbcType=VARCHAR},
 				#{name,jdbcType=VARCHAR},
 				#{summary,jdbcType=VARCHAR},
@@ -35,9 +37,9 @@
 				#{description,jdbcType=VARCHAR},
 				#{assignee,jdbcType=INTEGER},
 				#{reporter,jdbcType=INTEGER},
-				#{created_time,jdbcType=DATE},
-				#{updated_time,jdbcType=DATE},
-				#{resolved_time,jdbcType=DATE},
+				#{created_time,jdbcType=TIMESTAMP},
+				#{updated_time,jdbcType=TIMESTAMP},
+				#{resolved_time,jdbcType=TIMESTAMP},
 				#{estimated,jdbcType=INTEGER},
 				#{remaining,jdbcType=INTEGER},
 				#{logged,jdbcType=INTEGER}

@@ -6,6 +6,7 @@ import java.util.Date;
 public class IssueBean {
 	
 	private int id;
+	private int project_id;
 	private String issue_key;
 	private String name;
 	private String summary;
@@ -34,6 +35,12 @@ public class IssueBean {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getProject_id() {
+		return project_id;
+	}
+	public void setProject_id(int project_id) {
+		this.project_id = project_id;
 	}
 	public String getIssue_key() {
 		return issue_key;
@@ -132,18 +139,27 @@ public class IssueBean {
 		this.logged = logged;
 	}
 	public String getCreated_time_formatted() {
+		if(created_time==null){
+			return "";
+		}
 		return simpleDateFormat.format(created_time);
 	}
 	public void setCreated_time_formatted(String created_time_formatted) {
 		this.created_time_formatted = created_time_formatted;
 	}
 	public String getUpdated_time_formatted() {
+		if(updated_time==null){
+			return "";
+		}
 		return simpleDateFormat.format(updated_time);
 	}
 	public void setUpdated_time_formatted(String updated_time_formatted) {
 		this.updated_time_formatted = updated_time_formatted;
 	}
 	public String getResolved_time_formatted() {
+		if(resolved_time==null){
+			return "";
+		}
 		return simpleDateFormat.format(resolved_time);
 	}
 	public void setResolved_time_formatted(String resolved_time_formatted) {

@@ -1,5 +1,6 @@
 package name.lizhe.lira.module.project.controller;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class ProjectController {
     public @ResponseBody Object createProject(HttpServletResponse response,
             @RequestBody final ProjectBean projectBean) {
         
+    	projectBean.setUpdated_time(Calendar.getInstance().getTime());
     	projectService.createProject(projectBean);
     	
     	Map<String,String> result = new HashMap<>();
