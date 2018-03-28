@@ -16,7 +16,9 @@ public class IssueBean {
 	private String status;
 	private String description;
 	private int assignee;
+	private String assignee_name;
 	private int reporter;
+	private String reporter_name;
 	private Date created_time;
 	private Date updated_time;
 	private Date resolved_time;
@@ -103,11 +105,23 @@ public class IssueBean {
 	public void setAssignee(int assignee) {
 		this.assignee = assignee;
 	}
+	public String getAssignee_name() {
+		return assignee_name;
+	}
+	public void setAssignee_name(String assignee_name) {
+		this.assignee_name = assignee_name;
+	}
 	public int getReporter() {
 		return reporter;
 	}
 	public void setReporter(int reporter) {
 		this.reporter = reporter;
+	}
+	public String getReporter_name() {
+		return reporter_name;
+	}
+	public void setReporter_name(String reporter_name) {
+		this.reporter_name = reporter_name;
 	}
 	public Date getCreated_time() {
 		return created_time;

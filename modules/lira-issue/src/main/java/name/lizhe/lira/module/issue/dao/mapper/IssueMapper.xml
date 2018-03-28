@@ -51,7 +51,7 @@
 	<resultMap id="IssueBeanMap" type="name.lizhe.lira.module.issue.bean.IssueBean">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="issue_key" property="issue_key" jdbcType="VARCHAR" />
-		<result column="name" property="issue_name" jdbcType="VARCHAR" />
+		<result column="issue_name" property="issue_name" jdbcType="VARCHAR" />
 		<result column="summary" property="summary" jdbcType="VARCHAR" />
 		<result column="type" property="type" jdbcType="VARCHAR" />
 		<result column="priority" property="priority" jdbcType="VARCHAR" />
@@ -59,7 +59,9 @@
 		<result column="status" property="status" jdbcType="VARCHAR" />
 		<result column="description" property="description" jdbcType="VARCHAR" />
 		<result column="assignee" property="assignee" jdbcType="INTEGER" />
+		<result column="assignee_name" property="assignee_name" jdbcType="VARCHAR" />
 		<result column="reporter" property="reporter" jdbcType="INTEGER" />
+		<result column="reporter_name" property="reporter_name" jdbcType="VARCHAR" />
 		<result column="created_time" property="created_time" jdbcType="DATE" />
 		<result column="updated_time" property="updated_time" jdbcType="DATE" />
 		<result column="resolved_time" property="resolved_time" jdbcType="DATE" />
@@ -72,16 +74,37 @@
 	<select id="getIssues" resultMap="IssueBeanMap">
 	<![CDATA[
 		select
-			id,issue_key,name,summary,type,priority,labels,status,description,assignee,reporter,created_time,updated_time,resolved_time,estimated,remaining,logged
+			id,issue_key,name issue_name,summary,type,priority,labels,status,description,assignee,reporter,created_time,updated_time,resolved_time,estimated,remaining,logged
 		from Issues
 	]]>
 	</select>
 	
 	<select id="getIssueById" parameterType="java.lang.String" resultMap="IssueBeanMap">
 	<![CDATA[
-		select i.id,i.issue_key,i.name issue_name,i.summary,i.type,i.priority,i.labels,i.status,i.description,i.assignee,i.reporter,i.created_time,i.updated_time,i.resolved_time,i.estimated,i.remaining,i.logged, p.name project_name 
+		select i.id,
+		i.issue_key,
+		i.name issue_name,
+		i.summary,
+		i.type,
+		i.priority,
+		i.labels,
+		i.status,
+		i.description,
+		i.assignee,
+		u1.name assignee_name,
+		i.reporter,
+		u2.name reporter_name,
+		i.created_time,
+		i.updated_time,
+		i.resolved_time,
+		i.estimated,
+		i.remaining,
+		i.logged, 
+		p.name project_name 
 			from Issues i
 		join Projects p on p.id = i.project_id
+		join Users u1 on i.assignee = u1.id 
+		join Users u2 on i.reporter = u2.id
 			where i.id=#{id}
 	]]>
 	</select>
