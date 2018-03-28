@@ -51,7 +51,7 @@
 	<resultMap id="IssueBeanMap" type="name.lizhe.lira.module.issue.bean.IssueBean">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="issue_key" property="issue_key" jdbcType="VARCHAR" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="name" property="issue_name" jdbcType="VARCHAR" />
 		<result column="summary" property="summary" jdbcType="VARCHAR" />
 		<result column="type" property="type" jdbcType="VARCHAR" />
 		<result column="priority" property="priority" jdbcType="VARCHAR" />
@@ -66,7 +66,7 @@
 		<result column="estimated" property="estimated" jdbcType="INTEGER" />
 		<result column="remaining" property="remaining" jdbcType="INTEGER" />
 		<result column="logged" property="logged" jdbcType="INTEGER" />
-		
+		<result column="project_name" property="project_name" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<select id="getIssues" resultMap="IssueBeanMap">
@@ -79,10 +79,10 @@
 	
 	<select id="getIssueById" parameterType="java.lang.String" resultMap="IssueBeanMap">
 	<![CDATA[
-		select
-			id,issue_key,name,summary,type,priority,labels,status,description,assignee,reporter,created_time,updated_time,resolved_time,estimated,remaining,logged
-		from Issues 
-			where id=#{id}
+		select i.id,i.issue_key,i.name issue_name,i.summary,i.type,i.priority,i.labels,i.status,i.description,i.assignee,i.reporter,i.created_time,i.updated_time,i.resolved_time,i.estimated,i.remaining,i.logged, p.name project_name 
+			from Issues i
+		join Projects p on p.id = i.project_id
+			where i.id=#{id}
 	]]>
 	</select>
 	

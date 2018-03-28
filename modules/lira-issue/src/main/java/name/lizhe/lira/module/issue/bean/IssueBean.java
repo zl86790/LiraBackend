@@ -8,7 +8,7 @@ public class IssueBean {
 	private int id;
 	private int project_id;
 	private String issue_key;
-	private String name;
+	private String issue_name;
 	private String summary;
 	private String type;
 	private String priority;
@@ -23,6 +23,7 @@ public class IssueBean {
 	private int estimated;
 	private int remaining;
 	private int logged;
+	private String project_name;
 	
 	private String created_time_formatted;
 	private String updated_time_formatted;
@@ -48,11 +49,17 @@ public class IssueBean {
 	public void setIssue_key(String issue_key) {
 		this.issue_key = issue_key;
 	}
-	public String getName() {
-		return name;
+	public String getIssue_name() {
+		return issue_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setIssue_name(String issue_name) {
+		this.issue_name = issue_name;
+	}
+	public String getProject_name() {
+		return project_name;
+	}
+	public void setProject_name(String project_name) {
+		this.project_name = project_name;
 	}
 	public String getSummary() {
 		return summary;
