@@ -15,6 +15,24 @@
 	]]>
 	</select>
 	
-	
+	<insert id=addComments parameterType="name.lizhe.lira.module.comments.bean.CommentsBean">
+	<![CDATA[
+		insert into Comments 
+			(
+				issue_id,
+				user_id,
+				content,
+				updated_time
+			)
+		values
+			(
+				#{issue_id,jdbcType=INTEGER},
+				#{user_id,jdbcType=INTEGER},
+				#{content,jdbcType=VARCHAR},
+				#{updated_time,jdbcType=TIMESTAMP}
+			)
+
+	]]>
+	</insert>
 	
 </mapper>

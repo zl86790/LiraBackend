@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class CommentsBean {
 	private int id;
+	private int user_id;
 	private int issue_id;
 	private String content;
 	private Date updated_time;
@@ -17,6 +18,12 @@ public class CommentsBean {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 	public int getIssue_id() {
 		return issue_id;

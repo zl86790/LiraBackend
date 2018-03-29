@@ -1,6 +1,7 @@
 package name.lizhe.lira.module.comments.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,11 @@ public class CommentsServiceImpl implements CommentsService {
 	@Override
 	public List<CommentsBean> getIssueComments(String issue_id) {
 		return commentsMapper.getIssueComments("57");
+	}
+
+	@Override
+	public Map<String, String> addComments(CommentsBean commentsBean) {
+		return commentsMapper.addComments(commentsBean);
 	}
 
 }
