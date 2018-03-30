@@ -8,5 +8,5 @@ import name.lizhe.lira.module.comments.bean.CommentsBean;
 public interface CommentsService {
 	public List<CommentsBean> getIssueComments(String issue_id);
 
-	public Map<String, String> addComments(CommentsBean commentsBean);
+	public void addComments(CommentsBean commentsBean);
 }

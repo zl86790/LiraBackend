@@ -18,12 +18,12 @@ public class CommentsServiceImpl implements CommentsService {
 	
 	@Override
 	public List<CommentsBean> getIssueComments(String issue_id) {
-		return commentsMapper.getIssueComments("57");
+		return commentsMapper.getIssueComments(issue_id);
 	}
 
 	@Override
-	public Map<String, String> addComments(CommentsBean commentsBean) {
-		return commentsMapper.addComments(commentsBean);
+	public void addComments(CommentsBean commentsBean) {
+		commentsMapper.addComments(commentsBean);
 	}
 
 }

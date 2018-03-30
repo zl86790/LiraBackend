@@ -7,7 +7,7 @@ spring:
         encoding.enable: true  
         encoding.force: true
     datasource:
-        url: jdbc:mysql://lizhe.name:8088/Lira
+        url: jdbc:mysql://lizhe.name:8088/Lira?useUnicode=true&characterEncoding=utf-8
         username: root
         password: 
         driver-class-name: com.mysql.jdbc.Driver

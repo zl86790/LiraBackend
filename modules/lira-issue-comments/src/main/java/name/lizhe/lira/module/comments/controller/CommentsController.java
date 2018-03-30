@@ -2,6 +2,7 @@ package name.lizhe.lira.module.comments.controller;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,8 +36,10 @@ public class CommentsController {
     public @ResponseBody Map<String,String> addComments(HttpServletResponse response,@RequestBody CommentsBean commentsBean) throws IOException {
     	
     	commentsBean.setUpdated_time(Calendar.getInstance().getTime());
-    	
-    	return commentsService.addComments(commentsBean);
+    	commentsService.addComments(commentsBean);
+    	Map<String,String> result = new HashMap<>();
+    	result.put("message", "success");
+    	return result;
     	
     }
 
