@@ -15,7 +15,7 @@
 	]]>
 	</select>
 	
-	<insert id=addComments parameterType="name.lizhe.lira.module.comments.bean.CommentsBean">
+	<insert id="addComments" parameterType="name.lizhe.lira.module.comments.bean.CommentsBean">
 	<![CDATA[
 		insert into Comments 
 			(
