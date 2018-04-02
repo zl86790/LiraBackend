@@ -11,7 +11,10 @@
 
 	<select id="getIssueComments"  resultMap="CommentsBeanMap">
 	<![CDATA[
-		select id,issue_id,content,updated_time from Comments where issue_id=#{issue_id}
+		select c.id,c.issue_id,c.content,c.updated_time,u.full_name user_name from Comments c
+		join Users u
+		on c.user_id=u.id
+		where issue_id=#{issue_id}
 	]]>
 	</select>
 	
