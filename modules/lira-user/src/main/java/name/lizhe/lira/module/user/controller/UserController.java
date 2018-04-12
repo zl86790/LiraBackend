@@ -18,7 +18,8 @@ public class UserController {
 
 	@GetMapping("/api/v1/postlogin/users")
 	public @ResponseBody List<UserBean> getUsers(String project_id) {
-		return userService.getUsers(project_id);
+		List<UserBean> results = userService.getUsers(project_id);
+		return results;
 	}
 
 }

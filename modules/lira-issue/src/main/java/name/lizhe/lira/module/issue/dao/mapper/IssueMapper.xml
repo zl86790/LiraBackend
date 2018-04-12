@@ -28,7 +28,7 @@
 			(
 				#{project_id,jdbcType=INTEGER},
 				#{issue_key,jdbcType=VARCHAR},
-				#{name,jdbcType=VARCHAR},
+				#{issue_name,jdbcType=VARCHAR},
 				#{summary,jdbcType=VARCHAR},
 				#{type,jdbcType=VARCHAR},
 				#{priority,jdbcType=VARCHAR},
