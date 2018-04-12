@@ -27,6 +27,7 @@
 		<module>modules/lira-issue-comments</module>
 		<module>modules/lira-issue-history</module>
 		<module>modules/lira-system-parameter</module>
+		<module>modules/lira-session</module>
 		<module>lira-app</module>
 	</modules>
 	

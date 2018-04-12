@@ -2,10 +2,18 @@ package name.lizhe.lira.module.user.bean;
 
 public class UserBean{
 	
+	private int id;
 	private String userName;
 	private String passWord;
 	private String fullName;
 	private String emailAddress;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getUserName() {
 		return userName;
 	}

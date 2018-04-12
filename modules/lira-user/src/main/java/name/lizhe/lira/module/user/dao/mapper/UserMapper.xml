@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="name.lizhe.lira.module.user.dao.mapper.UserMapper" >
+
+	
+	
+	<resultMap id="UserBeanMap" type="name.lizhe.lira.module.user.bean.UserBean">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="userName" jdbcType="VARCHAR" />
+		<result column="full_name" property="fullName" jdbcType="VARCHAR" />
+		<result column="email_address" property="emailAddress" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getUsers" resultMap="UserBeanMap">
+	<![CDATA[
+		select
+			u.id, u.name, u.full_name, u.email_address
+		from Users u 
+			join ProjectUsers pu 
+		on u.id = pu.user_id
+			where pu.project_id = #{project_id}
+	]]>
+	</select>
+	
+	
+</mapper>
