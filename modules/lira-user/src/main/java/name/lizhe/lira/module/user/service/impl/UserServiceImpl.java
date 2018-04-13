@@ -20,4 +20,8 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUsers(project_id);
 	}
 
+	@Override
+	public List<UserBean> getAllUsers() {
+		return userMapper.getAllUsers();
+	}
 }

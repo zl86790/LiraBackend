@@ -21,5 +21,11 @@ public class UserController {
 		List<UserBean> results = userService.getUsers(project_id);
 		return results;
 	}
+	
+	@GetMapping("/api/v1/postlogin/allusers")
+	public @ResponseBody List<UserBean> getAllUsers(String project_id) {
+		List<UserBean> results = userService.getAllUsers();
+		return results;
+	}
 
 }

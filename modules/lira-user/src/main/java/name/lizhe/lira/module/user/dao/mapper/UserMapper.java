@@ -8,4 +8,6 @@ public interface UserMapper {
 
 	List<UserBean> getUsers(String project_id);
 
+	List<UserBean> getAllUsers();
+
 }
