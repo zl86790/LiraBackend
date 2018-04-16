@@ -71,13 +71,29 @@
 		<result column="project_name" property="project_name" jdbcType="VARCHAR" />
 	</resultMap>
 
-	<select id="getIssues" resultMap="IssueBeanMap">
+	<select id="getIssues" resultMap="IssueBeanMap" parameterType="java.util.Map">
 	<![CDATA[
 		select
-			id,issue_key,name issue_name,summary,type,priority,labels,status,description,assignee,reporter,created_time,updated_time,resolved_time,estimated,remaining,logged
-		from Issues
+			i.id,i.issue_key,i.name issue_name,i.summary,i.type,i.priority,i.labels,i.status,i.description,i.assignee,i.reporter,i.created_time,i.updated_time,i.resolved_time,i.estimated,i.remaining,i.logged
+		from Issues i
+			join Users u on i.assignee = u.id
+		where u.name=#{name}
+			order by i.id desc
+		 	limit ${pageNumber},${rowNumber}
 	]]>
 	</select>
+	
+	<select id="getIssuespagenumber" resultType="string">
+	<![CDATA[
+		select
+			count(*)
+		from Issues i
+			join Users u on i.assignee = u.id
+		where u.name=#{username}
+	]]>
+	</select>
+	
+	
 	
 	<select id="getIssueById" parameterType="java.lang.String" resultMap="IssueBeanMap">
 	<![CDATA[

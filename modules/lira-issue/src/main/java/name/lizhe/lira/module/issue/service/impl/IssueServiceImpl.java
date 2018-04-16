@@ -1,6 +1,7 @@
 package name.lizhe.lira.module.issue.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,13 +22,18 @@ public class IssueServiceImpl implements IssueService {
 	}
 
 	@Override
-	public List<IssueBean> getIssues(String name) {
-		return issueMapper.getIssues(name);
+	public List<IssueBean> getIssues(Map<String,String> map) {
+		return issueMapper.getIssues(map);
 	}
 
 	@Override
 	public IssueBean getIssueById(String id) {
 		return issueMapper.getIssueById(id);
+	}
+
+	@Override
+	public String getIssuespagenumber(String username) {
+		return issueMapper.getIssuespagenumber(username);
 	}
 
 }

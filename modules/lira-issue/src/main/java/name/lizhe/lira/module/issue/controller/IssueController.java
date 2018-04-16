@@ -6,9 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,10 +41,34 @@ public class IssueController {
 		return result;
     }
     
+    @GetMapping("/api/v1/postlogin/issuespagenumber")
+    public @ResponseBody String getIssuespagenumber(HttpServletRequest request) throws IOException {
+    	String username = request.getAttribute("username").toString();
+    	String issuesNumber = issueService.getIssuespagenumber(username);
+    	String rowNumber = request.getParameter("rowNumber");
+		return String.valueOf(Math.ceil(Double.parseDouble(issuesNumber)/Double.parseDouble(rowNumber)));
+    }
+    
     @GetMapping("/api/v1/postlogin/issues")
-    public @ResponseBody List<IssueBean> getIssues(String name) throws IOException {
+    public @ResponseBody List<IssueBean> getIssues(HttpServletRequest request) throws IOException {
+    	String username = request.getAttribute("username").toString();
+    	Map<String,String> map = new HashMap<String,String>();
     	
-    	return issueService.getIssues(name);
+    	String pageNumber = "0";
+    	if(!StringUtils.isEmpty(request.getParameter("pageNumber"))){
+    		pageNumber = request.getParameter("pageNumber");
+    	}
+    	String rowNumber = "10";
+    	if(!StringUtils.isEmpty(request.getParameter("rowNumber"))){
+    		rowNumber = request.getParameter("rowNumber");
+    	}
+    	
+    	map.put("name", username);
+    	map.put("pageNumber", String.valueOf(Integer.parseInt(pageNumber)*Integer.parseInt(rowNumber)));
+    	map.put("rowNumber", rowNumber);
+    	
+    	return issueService.getIssues(map);
+    	
     	
     }
     
