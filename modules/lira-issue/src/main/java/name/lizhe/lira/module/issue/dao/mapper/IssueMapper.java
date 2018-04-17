@@ -16,6 +16,6 @@ public interface IssueMapper {
 	
 	public IssueBean getIssueById(String id);
 
-	public String getIssuespagenumber(String username);
+	public String getIssueCounts(String username);
 	
 }

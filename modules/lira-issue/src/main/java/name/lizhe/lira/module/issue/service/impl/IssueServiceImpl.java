@@ -32,8 +32,8 @@ public class IssueServiceImpl implements IssueService {
 	}
 
 	@Override
-	public String getIssuespagenumber(String username) {
-		return issueMapper.getIssuespagenumber(username);
+	public String getIssueCounts(String username) {
+		return issueMapper.getIssueCounts(username);
 	}
 
 }

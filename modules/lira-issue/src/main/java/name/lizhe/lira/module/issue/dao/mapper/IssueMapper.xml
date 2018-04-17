@@ -83,7 +83,7 @@
 	]]>
 	</select>
 	
-	<select id="getIssuespagenumber" resultType="string">
+	<select id="getIssueCounts" resultType="string">
 	<![CDATA[
 		select
 			count(*)

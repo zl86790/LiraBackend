@@ -41,12 +41,11 @@ public class IssueController {
 		return result;
     }
     
-    @GetMapping("/api/v1/postlogin/issuespagenumber")
-    public @ResponseBody String getIssuespagenumber(HttpServletRequest request) throws IOException {
+    @GetMapping("/api/v1/postlogin/issueCounts")
+    public @ResponseBody String getIssueCounts(HttpServletRequest request) throws IOException {
     	String username = request.getAttribute("username").toString();
-    	String issuesNumber = issueService.getIssuespagenumber(username);
-    	String rowNumber = request.getParameter("rowNumber");
-		return String.valueOf(Math.ceil(Double.parseDouble(issuesNumber)/Double.parseDouble(rowNumber)));
+    	String issuesNumber = issueService.getIssueCounts(username);
+		return String.valueOf(issuesNumber);
     }
     
     @GetMapping("/api/v1/postlogin/issues")

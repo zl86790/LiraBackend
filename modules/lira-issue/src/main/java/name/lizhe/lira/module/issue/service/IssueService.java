@@ -9,5 +9,5 @@ public interface IssueService {
 	public void createIssue(IssueBean issueBean);
 	public List<IssueBean> getIssues(Map<String,String> map);
 	public IssueBean getIssueById(String id);
-	public String getIssuespagenumber(String username);
+	public String getIssueCounts(String username);
 }
