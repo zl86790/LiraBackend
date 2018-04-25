@@ -24,4 +24,9 @@ public class UserServiceImpl implements UserService {
 	public List<UserBean> getAllUsers() {
 		return userMapper.getAllUsers();
 	}
+
+	@Override
+	public List<UserBean> getUsersStartWith(String project_id, String startWith) {
+		return userMapper.getUsersStartWith(project_id,startWith);
+	}
 }

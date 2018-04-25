@@ -22,6 +22,31 @@
 	]]>
 	</select>
 	
+	<select id="getUsersStartWith" resultMap="UserBeanMap">
+	<![CDATA[
+		select
+			u.id, u.name, u.full_name, u.email_address
+		from Users u 
+	]]>
+			<if test="project_id != null and project_id != ''">
+			<![CDATA[
+			join ProjectUsers pu 
+				on u.id = pu.user_id
+			]]>
+			</if>
+			<![CDATA[
+			where 
+				u.full_name like CONCAT(#{startWith},'%')
+			]]>
+			<if test="project_id != null and project_id != ''">
+			<![CDATA[
+				and pu.project_id = #{project_id} 
+			]]>
+			</if>
+	</select>
+	
+	
+	
 	<select id="getAllUsers" resultMap="UserBeanMap">
 	<![CDATA[
 		select
