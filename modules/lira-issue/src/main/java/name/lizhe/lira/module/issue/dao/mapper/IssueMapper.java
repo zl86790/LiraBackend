@@ -16,6 +16,9 @@ public interface IssueMapper {
 	
 	public IssueBean getIssueById(String id);
 
-	public String getIssueCounts(String username);
+	public String getIssueCounts(Map<String,String> map);
+	
+	public List<IssueBean> getIssuesByCondition(Map<String,String> map);
+	public String getIssueCountsByCondition(Map<String,String> map);
 	
 }

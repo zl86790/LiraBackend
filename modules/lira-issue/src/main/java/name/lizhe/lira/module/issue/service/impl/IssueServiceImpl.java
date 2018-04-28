@@ -23,7 +23,8 @@ public class IssueServiceImpl implements IssueService {
 
 	@Override
 	public List<IssueBean> getIssues(Map<String,String> map) {
-		return issueMapper.getIssues(map);
+		List<IssueBean> results = issueMapper.getIssues(map);
+		return results;
 	}
 
 	@Override
@@ -32,8 +33,18 @@ public class IssueServiceImpl implements IssueService {
 	}
 
 	@Override
-	public String getIssueCounts(String username) {
-		return issueMapper.getIssueCounts(username);
+	public String getIssueCounts(Map<String,String> map) {
+		return issueMapper.getIssueCounts(map);
+	}
+
+	@Override
+	public List<IssueBean> getIssuesByCondition(Map<String, String> map) {
+		return issueMapper.getIssuesByCondition(map);
+	}
+
+	@Override
+	public String getIssueCountsByCondition(Map<String, String> map) {
+		return issueMapper.getIssueCountsByCondition(map);
 	}
 
 }

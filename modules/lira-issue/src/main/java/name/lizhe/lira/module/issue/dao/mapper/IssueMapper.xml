@@ -83,7 +83,7 @@
 	]]>
 	</select>
 	
-	<select id="getIssueCounts" resultType="string">
+	<select id="getIssueCounts" resultType="string" parameterType="java.util.Map">
 	<![CDATA[
 		select
 			count(*)
@@ -125,6 +125,32 @@
 	]]>
 	</select>
 	
+	<select id="getIssuesByCondition" resultMap="IssueBeanMap" parameterType="java.util.Map">
+	<![CDATA[
+		select
+			i.id,i.issue_key,i.name issue_name,i.summary,i.type,i.priority,i.labels,i.status,i.description,i.assignee,i.reporter,i.created_time,i.updated_time,i.resolved_time,i.estimated,i.remaining,i.logged
+		from Issues i where 1=1
+	]]>
+	<if test="project_id != null and project_id != ''">
+		<![CDATA[
+		and project_id=#{project_id}
+		]]>
+	</if>
+	order by i.id desc
+		 	limit ${pageNumber},${rowNumber}
+	</select>
 	
+	<select id="getIssueCountsByCondition" resultType="string" parameterType="java.util.Map">
+	<![CDATA[
+		select
+			count(*)
+		from Issues i where 1=1
+	]]>
+	<if test="project_id != null and project_id != ''">
+		<![CDATA[
+		and project_id=#{project_id}
+		]]>
+	</if>
+	</select>
 	
 </mapper>

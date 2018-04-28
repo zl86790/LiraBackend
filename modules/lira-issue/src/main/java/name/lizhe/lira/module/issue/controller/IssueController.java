@@ -44,7 +44,10 @@ public class IssueController {
     @GetMapping("/api/v1/postlogin/issueCounts")
     public @ResponseBody String getIssueCounts(HttpServletRequest request) throws IOException {
     	String username = request.getAttribute("username").toString();
-    	String issuesNumber = issueService.getIssueCounts(username);
+    	
+    	Map<String,String> map = new HashMap<String,String>();
+    	map.put("username", username);
+    	String issuesNumber = issueService.getIssueCounts(map);
 		return String.valueOf(issuesNumber);
     }
     
@@ -67,6 +70,39 @@ public class IssueController {
     	map.put("rowNumber", rowNumber);
     	
     	return issueService.getIssues(map);
+    	
+    	
+    }
+    
+    @GetMapping("/api/v1/postlogin/issueCountsByCondition")
+    public @ResponseBody String getIssueCountsByCondition(HttpServletRequest request) throws IOException {
+    	String project_id = request.getParameter("project_id");
+    	
+    	Map<String,String> map = new HashMap<String,String>();
+    	map.put("project_id", project_id);
+    	String issuesNumber = issueService.getIssueCountsByCondition(map);
+		return String.valueOf(issuesNumber);
+    }
+    
+    @GetMapping("/api/v1/postlogin/issuesByCondition")
+    public @ResponseBody List<IssueBean> getIssuesByCondition(HttpServletRequest request) throws IOException {
+    	String project_id = request.getParameter("project_id");
+    	Map<String,String> map = new HashMap<String,String>();
+    	
+    	String pageNumber = "0";
+    	if(!StringUtils.isEmpty(request.getParameter("pageNumber"))){
+    		pageNumber = request.getParameter("pageNumber");
+    	}
+    	String rowNumber = "10";
+    	if(!StringUtils.isEmpty(request.getParameter("rowNumber"))){
+    		rowNumber = request.getParameter("rowNumber");
+    	}
+    	
+    	map.put("project_id", project_id);
+    	map.put("pageNumber", String.valueOf(Integer.parseInt(pageNumber)*Integer.parseInt(rowNumber)));
+    	map.put("rowNumber", rowNumber);
+    	
+    	return issueService.getIssuesByCondition(map);
     	
     	
     }
