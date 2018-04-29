@@ -21,6 +21,11 @@
 		</dependency>
 		<dependency>
 			<groupId>name.lizhe.lira</groupId>
+			<artifactId>lira-session</artifactId>
+			<version>${lira.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>name.lizhe.lira</groupId>
 			<artifactId>lira-issue-comments</artifactId>
 			<version>${lira.version}</version>
 		</dependency>

@@ -19,5 +19,6 @@
 			<artifactId>lira-tools</artifactId>
 			<version>${lira.version}</version>
 		</dependency>
+
 	</dependencies>
 </project>

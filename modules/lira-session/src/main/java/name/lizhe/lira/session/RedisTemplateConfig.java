@@ -12,11 +12,11 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.stereotype.Service;
 
 import redis.clients.jedis.JedisPoolConfig;
 
-
+@Service
 public class RedisTemplateConfig {
     
     

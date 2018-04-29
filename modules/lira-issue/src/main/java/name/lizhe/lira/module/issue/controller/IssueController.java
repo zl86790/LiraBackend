@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +28,9 @@ public class IssueController {
 
 	@Autowired
 	IssueService issueService;
+	
+	@Autowired
+    protected RedisTemplate<String, Object> redisTemplate;
 	
     @PostMapping("/api/v1/postlogin/issue")
     public @ResponseBody Map<String,String> createIssue(HttpServletResponse response,
@@ -55,6 +60,9 @@ public class IssueController {
     public @ResponseBody List<IssueBean> getIssues(HttpServletRequest request) throws IOException {
     	String username = request.getAttribute("username").toString();
     	Map<String,String> map = new HashMap<String,String>();
+    	
+    	HashOperations<String, String, Map> hashOperations = redisTemplate.opsForHash();
+    	Map<String,Object> user = hashOperations.get(request.getAttribute("jwt").toString(), "user");
     	
     	String pageNumber = "0";
     	if(!StringUtils.isEmpty(request.getParameter("pageNumber"))){
