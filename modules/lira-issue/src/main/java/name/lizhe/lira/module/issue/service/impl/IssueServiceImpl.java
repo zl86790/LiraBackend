@@ -1,5 +1,6 @@
 package name.lizhe.lira.module.issue.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +46,14 @@ public class IssueServiceImpl implements IssueService {
 	@Override
 	public String getIssueCountsByCondition(Map<String, String> map) {
 		return issueMapper.getIssueCountsByCondition(map);
+	}
+
+	@Override
+	public int updateIssueDes(IssueBean issueBean) {
+		Map<String,String> map = new HashMap<>();
+		map.put("id", String.valueOf(issueBean.getId()));
+		map.put("description", issueBean.getDescription());
+		return issueMapper.updateIssueDes(map);
 	}
 
 }

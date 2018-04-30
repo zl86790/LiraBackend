@@ -20,5 +20,7 @@ public interface IssueMapper {
 	
 	public List<IssueBean> getIssuesByCondition(Map<String,String> map);
 	public String getIssueCountsByCondition(Map<String,String> map);
+
+	public int updateIssueDes(Map<String,String> map);
 	
 }

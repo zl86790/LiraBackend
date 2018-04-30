@@ -12,4 +12,5 @@ public interface IssueService {
 	public String getIssueCounts(Map<String,String> map);
 	public List<IssueBean> getIssuesByCondition(Map<String,String> map);
 	public String getIssueCountsByCondition(Map<String,String> map);
+	public int updateIssueDes(IssueBean issueBean);
 }

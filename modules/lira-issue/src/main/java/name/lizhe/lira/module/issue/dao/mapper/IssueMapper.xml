@@ -153,4 +153,13 @@
 	</if>
 	</select>
 	
+	<update id="updateIssueDes" parameterType="java.util.Map">  
+        <![CDATA[
+        	update Issues set description = #{description}
+        		where id = #{id}
+        ]]>
+	</update>  
+	
+	
+	
 </mapper>
