@@ -53,6 +53,7 @@ public class IssueServiceImpl implements IssueService {
 		Map<String,String> map = new HashMap<>();
 		map.put("id", String.valueOf(issueBean.getId()));
 		map.put("description", issueBean.getDescription());
+		map.put("type", issueBean.getType());
 		return issueMapper.updateIssueDes(map);
 	}
 

@@ -155,9 +155,17 @@
 	
 	<update id="updateIssueDes" parameterType="java.util.Map">  
         <![CDATA[
-        	update Issues set description = #{description}
-        		where id = #{id}
+        	update Issues 
         ]]>
+        <trim prefix="set" suffixOverrides=",">   
+        <if test="description != null and description != ''">
+        	description = #{description},
+        </if>
+        <if test="type != null and type != ''">
+        	type = #{type},
+        </if>
+        </trim>
+        where id = #{id}
 	</update>  
 	
 	
