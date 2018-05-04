@@ -54,6 +54,7 @@ public class IssueServiceImpl implements IssueService {
 		map.put("id", String.valueOf(issueBean.getId()));
 		map.put("description", issueBean.getDescription());
 		map.put("type", issueBean.getType());
+		map.put("status", issueBean.getStatus());
 		return issueMapper.updateIssueDes(map);
 	}
 
