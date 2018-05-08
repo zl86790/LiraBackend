@@ -50,12 +50,13 @@ public class IssueServiceImpl implements IssueService {
 
 	@Override
 	public int updateIssueDes(IssueBean issueBean) {
-		Map<String,String> map = new HashMap<>();
+		Map<String,Object> map = new HashMap<>();
 		map.put("id", String.valueOf(issueBean.getId()));
 		map.put("description", issueBean.getDescription());
 		map.put("type", issueBean.getType());
 		map.put("status", issueBean.getStatus());
 		map.put("priority", issueBean.getPriority());
+		map.put("updated_time", issueBean.getUpdated_time());
 		return issueMapper.updateIssueDes(map);
 	}
 

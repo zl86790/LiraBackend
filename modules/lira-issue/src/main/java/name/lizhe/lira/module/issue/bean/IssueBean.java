@@ -31,7 +31,11 @@ public class IssueBean {
 	private String updated_time_formatted;
 	private String resolved_time_formatted;
 	
-	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+	private String updated_time_input_str;
+	private String created_time_input_str;
+	private String resolved_time_input_str;
+	
+	public final static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
 	
 	public int getId() {
 		return id;
@@ -185,6 +189,24 @@ public class IssueBean {
 	}
 	public void setResolved_time_formatted(String resolved_time_formatted) {
 		this.resolved_time_formatted = resolved_time_formatted;
+	}
+	public String getUpdated_time_input_str() {
+		return updated_time_input_str;
+	}
+	public void setUpdated_time_input_str(String updated_time_input_str) {
+		this.updated_time_input_str = updated_time_input_str;
+	}
+	public String getCreated_time_input_str() {
+		return created_time_input_str;
+	}
+	public void setCreated_time_input_str(String created_time_input_str) {
+		this.created_time_input_str = created_time_input_str;
+	}
+	public String getResolved_time_input_str() {
+		return resolved_time_input_str;
+	}
+	public void setResolved_time_input_str(String resolved_time_input_str) {
+		this.resolved_time_input_str = resolved_time_input_str;
 	}
 	
 	

@@ -159,16 +159,19 @@
         ]]>
         <trim prefix="set" suffixOverrides=",">   
         <if test="description != null and description != ''">
-        	description = #{description},
+        	description = #{description,jdbcType=VARCHAR},
         </if>
         <if test="type != null and type != ''">
-        	type = #{type},
+        	type = #{type,jdbcType=VARCHAR},
         </if>
         <if test="status != null and status != ''">
-        	status = #{status},
+        	status = #{status,jdbcType=VARCHAR},
         </if>
         <if test="priority != null and priority != ''">
-        	priority = #{priority},
+        	priority = #{priority,jdbcType=VARCHAR},
+        </if>
+        <if test="updated_time != null">
+        	updated_time = #{updated_time,jdbcType=TIMESTAMP},
         </if>
         </trim>
         where id = #{id}

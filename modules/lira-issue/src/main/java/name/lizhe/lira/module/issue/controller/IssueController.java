@@ -1,7 +1,9 @@
 package name.lizhe.lira.module.issue.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,10 +50,13 @@ public class IssueController {
 
 	@PostMapping("/api/v1/postlogin/updateIssue")
 	public @ResponseBody Map<String, String> updateIssueDes(@RequestBody final IssueBean issueBean, HttpServletResponse response)
-			throws IOException {
+			throws IOException, ParseException {
 
+		if(!StringUtils.isEmpty(issueBean.getUpdated_time_input_str())){
+			Date updated_time = issueBean.simpleDateFormat.parse(issueBean.getUpdated_time_input_str());
+			issueBean.setUpdated_time(updated_time);
+		}
 		int count = issueService.updateIssueDes(issueBean);
-		
 		Map<String, String> result = new HashMap<>();
 		result.put("message", "success");
 		return result;
