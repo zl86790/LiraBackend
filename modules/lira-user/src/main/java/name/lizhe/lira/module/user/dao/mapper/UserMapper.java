@@ -1,6 +1,7 @@
 package name.lizhe.lira.module.user.dao.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -12,6 +13,6 @@ public interface UserMapper {
 
 	List<UserBean> getAllUsers();
 
-	List<UserBean> getUsersStartWith(@Param("project_id") String project_id, @Param("startWith")String startWith);
+	List<UserBean> getUsersStartWith(Map<String, Object> map);
 
 }

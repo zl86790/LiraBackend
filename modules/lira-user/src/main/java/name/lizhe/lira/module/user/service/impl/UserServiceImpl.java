@@ -1,6 +1,7 @@
 package name.lizhe.lira.module.user.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserBean> getUsersStartWith(String project_id, String startWith) {
-		return userMapper.getUsersStartWith(project_id,startWith);
+	public List<UserBean> getUsersStartWith(Map<String,Object> map) {
+		return userMapper.getUsersStartWith(map);
 	}
 }

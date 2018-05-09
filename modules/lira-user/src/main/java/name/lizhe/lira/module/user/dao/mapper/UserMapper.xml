@@ -28,7 +28,7 @@
 			u.id, u.name, u.full_name, u.email_address
 		from Users u 
 	]]>
-			<if test="project_id != null and project_id != ''">
+			<if test="(project_id != null and project_id != '') or (issue_id != null and issue_id != '')">
 			<![CDATA[
 			join ProjectUsers pu 
 				on u.id = pu.user_id
@@ -41,6 +41,11 @@
 			<if test="project_id != null and project_id != ''">
 			<![CDATA[
 				and pu.project_id = #{project_id} 
+			]]>
+			</if>
+			<if test="issue_id != null and issue_id != ''">
+			<![CDATA[
+			    and pu.project_id = (select project_id from Issues where id=#{issue_id})
 			]]>
 			</if>
 	</select>
