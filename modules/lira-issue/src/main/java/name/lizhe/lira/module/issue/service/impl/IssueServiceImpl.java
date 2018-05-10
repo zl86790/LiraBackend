@@ -59,6 +59,7 @@ public class IssueServiceImpl implements IssueService {
 		map.put("updated_time", issueBean.getUpdated_time());
 		map.put("resolved_time", issueBean.getResolved_time());
 		map.put("created_time", issueBean.getCreated_time());
+		map.put("assignee", issueBean.getAssignee());
 		return issueMapper.updateIssueDes(map);
 	}
 
