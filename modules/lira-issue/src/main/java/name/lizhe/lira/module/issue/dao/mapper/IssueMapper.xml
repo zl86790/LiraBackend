@@ -179,8 +179,11 @@
         <if test="created_time != null">
         	created_time = #{created_time,jdbcType=TIMESTAMP},
         </if>
-        <if test="assignee != null and assignee!= 0">
+        <if test="assignee != null and assignee != 0">
         	assignee = #{assignee,jdbcType=INTEGER},
+        </if>
+        <if test="reporter != null and reporter != 0">
+        	reporter = #{reporter,jdbcType=INTEGER},
         </if>
         </trim>
         where id = #{id}
