@@ -27,7 +27,7 @@
 		values
 			(
 				#{project_id,jdbcType=INTEGER},
-				#{issue_key,jdbcType=VARCHAR},
+				_nextval(#{project_id,jdbcType=INTEGER}),
 				#{issue_name,jdbcType=VARCHAR},
 				#{summary,jdbcType=VARCHAR},
 				#{type,jdbcType=VARCHAR},
