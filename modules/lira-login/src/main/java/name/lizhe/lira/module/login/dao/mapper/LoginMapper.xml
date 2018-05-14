@@ -13,7 +13,7 @@
 	<select id="doLogin" resultMap="LoginResultMap">
 	<![CDATA[
 		select
-			name,password,full_name,email_address
+			id,name,password,full_name,email_address
 		from Users
  			where name = #{userName,jdbcType=VARCHAR} and password = #{passWord,jdbcType=VARCHAR} 
 	]]>

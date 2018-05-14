@@ -40,15 +40,17 @@ public class LoginController {
     public @ResponseBody Map login(HttpServletResponse response,
                       @RequestBody final UserBean userBean) throws IOException {
     	HashOperations<String, String, Map> hashOperations = redisTemplate.opsForHash();
-        if(validCredentials(userBean)) {
-            String jwt = JwtUtil.generateToken(userBean.getUserName());
+    	UserBean user = validCredentials(userBean);
+        if(user!=null) {
+            String jwt = JwtUtil.generateToken(user.getUserName());
 //          response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwt);
             Map<String,String> result = new HashMap<>();
             result.put("lira_token", jwt);
             
-            Map<String,Object> user = new HashMap<>();
-            user.put("username", userBean.getUserName());
-            hashOperations.put(jwt, "user", user);
+            Map<String,Object> userMap = new HashMap<>();
+            userMap.put("username", user.getUserName());
+            userMap.put("userid", user.getId());
+            hashOperations.put(jwt, "user", userMap);
             redisTemplate.expire(jwt, 60*5, TimeUnit.SECONDS);
             return result;
         }else
@@ -56,11 +58,9 @@ public class LoginController {
 		return null;
     }
 
-    private boolean validCredentials(UserBean userBean) {
-    	if(loginService.doLogin(userBean.getUserName(),userBean.getPassWord())!=null){
-    		return true;
-    	}
-        return false;
+    private UserBean validCredentials(UserBean userBean) {
+    	UserBean user = loginService.doLogin(userBean.getUserName(),userBean.getPassWord());
+        return user;
     }
 
 }

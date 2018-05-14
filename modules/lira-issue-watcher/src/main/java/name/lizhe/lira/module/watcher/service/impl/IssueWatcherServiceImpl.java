@@ -19,5 +19,11 @@ public class IssueWatcherServiceImpl implements IssueWatcherService {
 	public List<IssueWatcherBean> getIssueWatchers(String issue_id) {
 		return watcherMapper.getIssueWatchers(issue_id);
 	}
+
+	@Override
+	public int insertWatcher(IssueWatcherBean watcher) {
+		int count = watcherMapper.insertWatcher(watcher);
+		return count;
+	}
 	
 }

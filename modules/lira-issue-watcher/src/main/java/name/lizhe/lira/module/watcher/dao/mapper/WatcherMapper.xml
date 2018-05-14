@@ -19,4 +19,22 @@
 	]]>
 	</select>
 	
+	<insert id="insertWatcher" parameterType="name.lizhe.lira.module.watcher.bean.IssueWatcherBean">
+	<![CDATA[
+		insert into Watchers 
+			(
+				issue_id,
+				user_id,
+				updated_time
+			)
+		values
+			(
+				#{issue_id,jdbcType=INTEGER},
+				#{user_id,jdbcType=INTEGER},
+				#{updated_time,jdbcType=TIMESTAMP}
+			)
+
+	]]>
+	</insert>
+	
 </mapper>
