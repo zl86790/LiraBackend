@@ -1,0 +1,28 @@
+CREATE TABLE `Issues` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `project_id` int(10) unsigned NOT NULL,
+  `issue_key` varchar(20) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `summary` varchar(200) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `priority` varchar(10) NOT NULL,
+  `labels` varchar(200) DEFAULT NULL,
+  `status` varchar(20) NOT NULL,
+  `description` varchar(5000) NOT NULL,
+  `assignee` int(10) unsigned DEFAULT NULL,
+  `reporter` int(10) unsigned DEFAULT NULL,
+  `created_time` datetime NOT NULL,
+  `updated_time` datetime DEFAULT NULL,
+  `resolved_time` datetime DEFAULT NULL,
+  `estimated` int(10) unsigned DEFAULT NULL,
+  `remaining` int(10) unsigned DEFAULT NULL,
+  `logged` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `assignee2userId` (`assignee`),
+  KEY `reporter2userId` (`reporter`),
+  KEY `projectid2projectid` (`project_id`),
+  CONSTRAINT `assignee2userId` FOREIGN KEY (`assignee`) REFERENCES `Users` (`id`),
+  CONSTRAINT `projectid2projectid` FOREIGN KEY (`project_id`) REFERENCES `Projects` (`id`),
+  CONSTRAINT `reporter2userId` FOREIGN KEY (`reporter`) REFERENCES `Users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
+
