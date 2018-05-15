@@ -37,4 +37,11 @@
 	]]>
 	</insert>
 	
+	<delete id="deleteWatcher" parameterType="name.lizhe.lira.module.watcher.bean.IssueWatcherBean">
+	<![CDATA[
+		delete from Watchers 
+			where issue_id = #{issue_id,jdbcType=INTEGER} and user_id = #{user_id,jdbcType=INTEGER}
+	]]>
+	</delete>
+	
 </mapper>

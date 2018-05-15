@@ -25,5 +25,11 @@ public class IssueWatcherServiceImpl implements IssueWatcherService {
 		int count = watcherMapper.insertWatcher(watcher);
 		return count;
 	}
+
+	@Override
+	public int deleteWatcher(IssueWatcherBean watcher) {
+		int count = watcherMapper.deleteWatcher(watcher);
+		return count;
+	}
 	
 }

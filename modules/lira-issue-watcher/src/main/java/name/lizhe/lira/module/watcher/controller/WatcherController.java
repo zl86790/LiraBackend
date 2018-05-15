@@ -51,5 +51,20 @@ public class WatcherController {
 		return result;
     	
     }
+    
+    @PostMapping("/api/v1/postlogin/issuewatcher/delete")
+    public @ResponseBody Map<String, String> deleteWatcher(@RequestBody IssueWatcherBean watcher,@RequestHeader HttpHeaders headers) throws IOException {
+    	HashOperations<String, String, Map> hashOperations = redisTemplate.opsForHash();
+    	String jwt = headers.getFirst(HEADER_STRING);
+    	Map<String,Object> userMap = hashOperations.get(jwt, "user");
+    	String userId = userMap.get("userid").toString();
+    	watcher.setUser_id(Integer.parseInt(userId));
+    	
+    	int count = issueWatcherService.deleteWatcher(watcher);
+    	Map<String, String> result = new HashMap<>();
+		result.put("message", "success");
+		return result;
+    	
+    }
 
 }
