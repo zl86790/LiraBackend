@@ -31,17 +31,27 @@ public class WatcherController {
 	public static final String HEADER_STRING = "lira_token";
 	
     @GetMapping("/api/v1/postlogin/issuewatchers")
-    public @ResponseBody List<IssueWatcherBean> getIssueComments(String issue_id) throws IOException {
+    public @ResponseBody List<IssueWatcherBean> getIssuewatchers(String issue_id) throws IOException {
     	
     	return issueWatcherService.getIssueWatchers(issue_id);
     	
     }
     
+    @GetMapping("/api/v1/postlogin/watchstatus")
+    public @ResponseBody boolean watchstatus(String issue_id,@RequestHeader HttpHeaders headers) throws IOException {
+    	
+    	IssueWatcherBean watcher = new IssueWatcherBean();
+    	watcher.setIssue_id(Integer.parseInt(issue_id));
+    	Map<String, Object> userMap = getUserMap(headers);
+    	String userId = userMap.get("userid").toString();
+    	watcher.setUser_id(Integer.parseInt(userId));
+    	boolean result = issueWatcherService.watchstatus(watcher);
+    	return result;
+    }
+    
     @PostMapping("/api/v1/postlogin/issuewatcher")
     public @ResponseBody Map<String, String> insertWatcher(@RequestBody IssueWatcherBean watcher,@RequestHeader HttpHeaders headers) throws IOException {
-    	HashOperations<String, String, Map> hashOperations = redisTemplate.opsForHash();
-    	String jwt = headers.getFirst(HEADER_STRING);
-    	Map<String,Object> userMap = hashOperations.get(jwt, "user");
+    	Map<String, Object> userMap = getUserMap(headers);
     	String userId = userMap.get("userid").toString();
     	watcher.setUser_id(Integer.parseInt(userId));
     	watcher.setUpdated_time(Calendar.getInstance().getTime());
@@ -51,12 +61,17 @@ public class WatcherController {
 		return result;
     	
     }
+
+	private Map<String, Object> getUserMap(HttpHeaders headers) {
+		HashOperations<String, String, Map> hashOperations = redisTemplate.opsForHash();
+    	String jwt = headers.getFirst(HEADER_STRING);
+    	Map<String,Object> userMap = hashOperations.get(jwt, "user");
+		return userMap;
+	}
     
     @PostMapping("/api/v1/postlogin/issuewatcher/delete")
     public @ResponseBody Map<String, String> deleteWatcher(@RequestBody IssueWatcherBean watcher,@RequestHeader HttpHeaders headers) throws IOException {
-    	HashOperations<String, String, Map> hashOperations = redisTemplate.opsForHash();
-    	String jwt = headers.getFirst(HEADER_STRING);
-    	Map<String,Object> userMap = hashOperations.get(jwt, "user");
+    	Map<String, Object> userMap = getUserMap(headers);
     	String userId = userMap.get("userid").toString();
     	watcher.setUser_id(Integer.parseInt(userId));
     	

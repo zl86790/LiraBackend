@@ -19,6 +19,15 @@
 	]]>
 	</select>
 	
+	<select id="watchstatus"  parameterType="name.lizhe.lira.module.watcher.bean.IssueWatcherBean" resultType="java.lang.Integer">
+	<![CDATA[
+		select count(*)
+		 from Watchers as w 
+		 where w.issue_id=#{issue_id,jdbcType=INTEGER} and w.user_id=#{user_id,jdbcType=INTEGER}
+	]]>
+	</select>
+	
+	
 	<insert id="insertWatcher" parameterType="name.lizhe.lira.module.watcher.bean.IssueWatcherBean">
 	<![CDATA[
 		insert into Watchers 

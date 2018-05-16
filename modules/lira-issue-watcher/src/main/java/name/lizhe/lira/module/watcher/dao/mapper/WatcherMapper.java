@@ -10,5 +10,6 @@ import name.lizhe.lira.module.watcher.bean.IssueWatcherBean;
 public interface WatcherMapper {
 	public List<IssueWatcherBean> getIssueWatchers(String issue_id);
 	public int insertWatcher(IssueWatcherBean watcher);
-	public int deleteWatcher(IssueWatcherBean watcher); 
+	public int deleteWatcher(IssueWatcherBean watcher);
+	public int watchstatus(IssueWatcherBean watcher); 
 }

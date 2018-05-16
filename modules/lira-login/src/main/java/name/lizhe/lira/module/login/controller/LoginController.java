@@ -51,7 +51,7 @@ public class LoginController {
             userMap.put("username", user.getUserName());
             userMap.put("userid", user.getId());
             hashOperations.put(jwt, "user", userMap);
-            redisTemplate.expire(jwt, 60*5, TimeUnit.SECONDS);
+            redisTemplate.expire(jwt, 60*30, TimeUnit.SECONDS);
             return result;
         }else
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Wrong credentials");
