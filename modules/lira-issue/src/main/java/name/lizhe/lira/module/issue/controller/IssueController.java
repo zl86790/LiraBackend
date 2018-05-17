@@ -8,17 +8,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpHeaders;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,13 +50,30 @@ public class IssueController {
 		return result;
 	}
 
+    @GetMapping("/api/v1/postlogin/assigneestatus")
+    public @ResponseBody boolean assigneestatus(@RequestParam String assignee_name,@RequestHeader HttpHeaders headers) throws IOException {
+    	Map<String, Object> userMap = getUserMap(headers);
+    	String user_name = userMap.get("username").toString();
+    	if(user_name.equals(assignee_name)){
+    		return true;
+    	}
+    	return false;
+    }
+	
+	
 	@PostMapping("/api/v1/postlogin/updateIssue")
-	public @ResponseBody Map<String, String> updateIssueDes(@RequestBody final IssueBean issueBean, HttpServletResponse response)
+	public @ResponseBody Map<String, String> updateIssueDes(@RequestBody final IssueBean issueBean, HttpServletResponse response,@RequestHeader HttpHeaders headers)
 			throws IOException, ParseException {
 
 		if(!StringUtils.isEmpty(issueBean.getUpdated_time_input_str())){
 			Date updated_time = issueBean.simpleDateFormat.parse(issueBean.getUpdated_time_input_str());
 			issueBean.setUpdated_time(updated_time);
+		}
+		
+		if("-1".equals(String.valueOf(issueBean.getAssignee()))){
+			Map<String, Object> userMap = getUserMap(headers);
+	    	String userId = userMap.get("userid").toString();
+	    	issueBean.setAssignee(Integer.parseInt(userId));
 		}
 		int count = issueService.updateIssueDes(issueBean);
 		Map<String, String> result = new HashMap<>();
@@ -138,5 +157,13 @@ public class IssueController {
 		IssueBean bean = issueService.getIssueById(id);
 		return bean;
 
+	}
+	
+	public static final String HEADER_STRING = "lira_token";
+	private Map<String, Object> getUserMap(HttpHeaders headers) {
+		HashOperations<String, String, Map> hashOperations = redisTemplate.opsForHash();
+    	String jwt = headers.getFirst(HEADER_STRING);
+    	Map<String,Object> userMap = hashOperations.get(jwt, "user");
+		return userMap;
 	}
 }
